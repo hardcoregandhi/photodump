@@ -1,0 +1,42 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python application
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: PyInstaller Windows
+      uses: JackMcKew/pyinstaller-action-windows@v0.1.2
+      with:
+      # Directory containing source code (optional requirements.txt).
+      path: CopyAllPictures.py     # Specify a custom URL for PYPI
+      pypi_url: # optional, default is https://pypi.python.org/
+      # Specify a custom URL for PYPI Index
+      pypi_index_url: # optional, default is https://pypi.python.org/simple
+      # Specify a file path for .spec file
+      spec: # optional, default is           
+        
+    - uses: actions/upload-artifact@v2
+      with:
+        name: CopyAllPictures.exe
+        path: src/dist/windows

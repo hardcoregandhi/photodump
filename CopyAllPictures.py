@@ -4,6 +4,7 @@ import shutil
 import os 
 import argparse
 import sys
+import time
 import datetime
 import tkinter as tk
 from tkinter import filedialog
@@ -25,7 +26,8 @@ def main(args):
     print(args)
 
     root = tk.Tk()
-
+    root.withdraw()
+    
     if not args.input:
         src_dir = filedialog.askdirectory()
     else:
@@ -38,6 +40,11 @@ def main(args):
         dst_dir = args.output + ":photodump_" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M") +"\\"
 
 
+        
+    print("Input directory is %s@" % src_dir)
+    print("Output directory is %s@" % dst_dir)
+    print("Photodump will begin in 5 seconds")
+    time.sleep(5)
 
     for (dirpath, dirnames, filenames) in os.walk(src_dir):
         for filename in filenames:

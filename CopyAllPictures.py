@@ -29,20 +29,20 @@ def main(args):
     root.withdraw()
     
     if not args.input:
-        src_dir = filedialog.askdirectory()
+        src_dir = filedialog.askdirectory(title="Select the input Drive", initialdir='shell:MyComputerFolder')
     else:
         src_dir = args.input + ":"
 
     if not args.output:
-        dst_dir = filedialog.askdirectory()
+        dst_dir = filedialog.askdirectory(title="Select the output Drive", initialdir='shell:MyComputerFolder')
         dst_dir = os.path.join(dst_dir, "photodump_" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M"))
     else:
         dst_dir = args.output + ":photodump_" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M") +"\\"
 
 
         
-    print("Input directory is %s@" % src_dir)
-    print("Output directory is %s@" % dst_dir)
+    print("Input directory is %s" % src_dir)
+    print("Output directory is %s" % dst_dir)
     print("Photodump will begin in 5 seconds")
     time.sleep(5)
 

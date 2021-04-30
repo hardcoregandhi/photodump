@@ -33,3 +33,10 @@ jobs:
       - name: Run a multi-line script
         run: |
           pyinstaller --onefile CopyAllPictures.py
+          
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: Release exec
+          path: dist/CopyAllPictures.exe
+
